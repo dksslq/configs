@@ -1,0 +1,106 @@
+// 通用(kcp) 服务端注释
+{
+    "log": {
+        "access": "/var/log/v2ray/access.log",
+        "error": "/var/log/v2ray/error.log",
+        "loglevel": "info"
+    },
+    "inbounds": [
+        {
+            "port": 10086,
+            "listen": "0.0.0.0",
+            "tag": "example-tag-vmess-inbound",
+            "protocol": "vmess",
+            "settings": {
+                "clients": [
+                    {
+                        "email": "foo@mail", // 邮箱可以用于流量统计. 用户流量为0时(用户没有连接过),查询用户流量会报错
+                        "id": "11111111-1111-1111-1111-111111111111",
+                        "level": 0, // 用户组号
+                        "alterId": 64
+                    },
+                    {
+                        "email": "bar@mail",
+                        "id": "22222222-2222-2222-2222-222222222222",
+                        "level": 50,
+                        "alterId": 64
+                    }
+                ]
+            },
+            "streamSettings": {
+                "network": "kcp",
+                "kcpSettings": {
+                    "congestion": true,
+                    "header": {
+                        "type": "wechat-video"
+                    }
+                }
+            }
+        },
+        {
+            "listen": "127.0.0.1",
+            "port": 8080,
+            "protocol": "dokodemo-door",
+            "settings": {
+                "address": "127.0.0.1"
+            },
+            "tag": "api"
+        }
+    ],
+    "outbounds": [
+        {
+            "protocol": "freedom",
+            "settings": {}
+        }
+    ],
+    "routing": {
+        "settings": {
+            "rules": [
+                {
+                    "type": "field",
+                    "inboundTag": [
+                        "api"
+                    ],
+                    "outboundTag": "api"
+                },
+                {
+                    "type": "field",
+                    "ip": [
+                        "geoip:private" //丢弃私有地址的代理请求 :)
+                    ],
+                    "outboundTag": "blocked"
+                }
+            ]
+        },
+        "strategy": "rules"
+    },
+    "policy": {
+        "levels": {
+            "0": {
+                "statsUserDownlink": true,
+                "statsUserUplink": true
+            },
+            "50": { // 50号用户组 策略 超时设定 单位 秒
+                "statsUserDownlink": true, // 统计下行流量
+                "statsUserUplink": true, //统计上行流量
+                "connIdle": 300, // 空闲连接超时
+                "downlinkOnly": 30, // 下行连接超时
+                "uplinkOnly": 15, // 上行连接超时
+                "handshake": 10 // v2ray客户端-服务端 连接超时
+            }
+        },
+        "system": {
+            "statsInboundDownlink": true,
+            "statsInboundUplink": true
+        }
+    },
+    "stats": {},
+    "api": {
+        "tag": "api",
+        "services": [
+            "HandlerService",
+            "LoggerService",
+            "StatsService"
+        ]
+    }
+}
