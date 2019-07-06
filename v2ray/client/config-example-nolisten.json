@@ -11,7 +11,7 @@
       "settings": {
         "vnext": [
           {
-            "address": "-out-addr-",
+            "address": "OUT_ADDR",
             "port": 10038,
             "users": [
               {

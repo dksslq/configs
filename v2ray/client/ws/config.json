@@ -32,7 +32,7 @@
       "settings": {
         "vnext": [
           {
-            "address": "-out-addr-",
+            "address": "OUT_ADDR",
             "port": 443,
             "users": [
               {
@@ -52,7 +52,7 @@
         "security": "tls",
         "tlsSettings": {
           "allowInsecure": true,
-          "serverName": "-host-name-"
+          "serverName": "OUT_ADDR"
         },
         "tcpSettings": null,
         "kcpSettings": null,
@@ -60,7 +60,7 @@
           "connectionReuse": true,
           "path": "/take/off",
           "headers": {
-            "Host": "-host-name-"
+            "Host": "OUT_ADDR"
           }
         },
         "httpSettings": null,
