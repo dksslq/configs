@@ -52,7 +52,7 @@
         "security": "tls",
         "tlsSettings": {
           "allowInsecure": true,
-          "serverName": "OUT_ADDR"
+          "serverName": "HOST_NAME"
         },
         "tcpSettings": null,
         "kcpSettings": null,
@@ -60,7 +60,7 @@
           "connectionReuse": true,
           "path": "/take/off",
           "headers": {
-            "Host": "OUT_ADDR"
+            "Host": "HOST_NAME"
           }
         },
         "httpSettings": null,
