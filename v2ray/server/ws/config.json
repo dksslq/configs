@@ -33,7 +33,7 @@
                     "headers": {
                         "Host": "example.com"
                     },
-                    "path": "/take/off"
+                    "path": "/path/foo"
                 },
                 "security": "tls",
                 "tlsSettings": {

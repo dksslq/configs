@@ -34,7 +34,7 @@
                     "headers": { // 自定义ws http头部字段
                         "Host": "example.com"
                     },
-                    "path": "/take/off"
+                    "path": "/path/foo"
                 },
                 "security": "tls",
                 "tlsSettings": {

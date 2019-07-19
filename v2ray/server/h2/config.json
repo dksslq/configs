@@ -30,7 +30,7 @@
                 "network": "h2",
                 "httpSettings": {
                     "connectionReuse": true,
-                    "path": "/take/off"
+                    "path": "/path/foo"
                 },
                 "security": "tls",
                 "tlsSettings": {

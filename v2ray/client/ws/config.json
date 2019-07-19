@@ -58,7 +58,7 @@
         "kcpSettings": null,
         "wsSettings": {
           "connectionReuse": true,
-          "path": "/take/off",
+          "path": "/path/foo",
           "headers": {
             "Host": "HOST_NAME"
           }
