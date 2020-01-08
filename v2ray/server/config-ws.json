@@ -60,6 +60,11 @@
         {
             "protocol": "freedom",
             "settings": {}
+        },
+        {
+            "protocol": "blackhole",
+            "settings": {},
+            "tag": "blocked"
         }
     ],
     "routing": {
