@@ -14,13 +14,13 @@
                 "clients": [
                     {
                         "email": "foo@mail",
-                        "id": "11111111-1111-1111-1111-111111111111",
+                        "id": "xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx",
                         "level": 0,
                         "alterId": 64
                     },
                     {
                         "email": "bar@mail",
-                        "id": "22222222-2222-2222-2222-222222222222",
+                        "id": "xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx",
                         "level": 50,
                         "alterId": 64
                     }
@@ -31,13 +31,13 @@
                 "wsSettings": {
                     "connectionReuse": true,
                     "headers": {
-                        "Host": "example.com"
+                        "Host": "HOST_NAME"
                     },
                     "path": "/path/foo"
                 },
                 "security": "tls",
                 "tlsSettings": {
-                    "serverName": "example.com",
+                    "serverName": "HOST_NAME",
                     "allowInsecure": false,
                     "alpn": ["http/1.1"],
                     "certificates": [
