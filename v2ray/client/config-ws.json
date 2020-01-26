@@ -51,8 +51,16 @@
         "network": "ws",
         "security": "tls",
         "tlsSettings": {
-          "allowInsecure": true,
-          "serverName": "HOST_NAME"
+          "serverName": "HOST_NAME",
+          "allowInsecure": false,
+          "alpn": ["http/1.1"],
+          "certificates": [
+            {
+              "usage": "verify",
+              "certificateFile": "cert.pem"
+            }
+          ],
+          "disableSystemRoot": true
         },
         "tcpSettings": null,
         "kcpSettings": null,
