@@ -37,12 +37,17 @@
                 },
                 "security": "tls",
                 "tlsSettings": {
+                    "serverName": "example.com",
+                    "allowInsecure": false,
+                    "alpn": ["http/1.1"],
                     "certificates": [
                         {
+                            "usage": "encipherment",
                             "certificateFile": "cert.pem",
                             "keyFile": "privkey.pem"
                         }
-                    ]
+                    ],
+                    "disableSystemRoot": true
                 }
             }
         },
