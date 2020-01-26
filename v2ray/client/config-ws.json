@@ -27,7 +27,7 @@
   ],
   "outbounds": [
     {
-      "tag": "proxy",
+      "tag": "example-tag-vmess-outbound",
       "protocol": "vmess",
       "settings": {
         "vnext": [
@@ -38,7 +38,7 @@
               {
                 "id": "xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx",
                 "alterId": 64,
-                "email": "email@example.com",
+                "email": "foo@mail",
                 "security": "chacha20-poly1305"
               }
             ]
