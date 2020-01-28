@@ -72,7 +72,7 @@
                 "id": "xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx",
                 "alterId": 64,
                 "email": "foo@mail",
-                "security": "chacha20-poly1035"
+                "security": "chacha20-poly1305"
               }
             ]
           }
