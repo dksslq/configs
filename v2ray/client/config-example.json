@@ -6,6 +6,7 @@
   },
   "inbounds": [
     {
+      "tag": "example-tag-socks-inbound",
       "port": 10808,
       "listen": "127.0.0.1",
       "protocol": "socks",
@@ -17,7 +18,13 @@
         ]
       },
       "settings": {
-        "auth": "noauth",
+        "auth": "password",
+        "accounts": [
+          {
+            "user": "foo",
+            "pass": "1234"
+          }
+        ],
         "udp": true,
         "ip": null,
         "clients": null
@@ -25,6 +32,7 @@
       "streamSettings": null
     },
     {
+      "tag": "example-tag-http-inbound",
       "port": 10809,
       "listen": "127.0.0.1",
       "protocol": "http",
@@ -36,7 +44,13 @@
         ]
       },
       "settings": {
-        "auth": "noauth",
+        "auth": "password",
+        "accounts": [
+          {
+            "user": "bar",
+            "pass": "1234"
+          }
+        ],
         "udp": true,
         "ip": null,
         "clients": null
