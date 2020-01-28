@@ -23,6 +23,25 @@
         "clients": null
       },
       "streamSettings": null
+    },
+    {
+      "port": 10809,
+      "listen": "127.0.0.1",
+      "protocol": "http",
+      "sniffing": {
+        "enabled": true,
+        "destOverride": [
+          "http",
+          "tls"
+        ]
+      },
+      "settings": {
+        "auth": "noauth",
+        "udp": true,
+        "ip": null,
+        "clients": null
+      },
+      "streamSettings": null
     }
   ],
   "outbounds": [
