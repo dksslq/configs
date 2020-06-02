@@ -1,55 +1,60 @@
 {
-    "log": {
-        "access": "/var/log/v2ray/access.log",
-        "error": "/var/log/v2ray/error.log",
-        "loglevel": "info"
+    "api": {
+        "services": [
+            "HandlerService",
+            "LoggerService",
+            "StatsService"
+        ],
+        "tag": "api"
     },
     "inbounds": [
         {
-            "port": 10086,
             "listen": "0.0.0.0",
-            "tag": "example-tag-vmess-inbound",
+            "port": 10086,
             "protocol": "vmess",
             "settings": {
                 "clients": [
                     {
+                        "alterId": 64,
                         "email": "foo@mail",
                         "id": "xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx",
-                        "level": 0,
-                        "alterId": 64
+                        "level": 0
                     },
                     {
+                        "alterId": 64,
                         "email": "bar@mail",
                         "id": "xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx",
-                        "level": 50,
-                        "alterId": 64
+                        "level": 50
                     }
                 ]
             },
             "streamSettings": {
                 "network": "ws",
+                "security": "tls",
+                "tlsSettings": {
+                    "allowInsecure": false,
+                    "alpn": [
+                        "http/1.1"
+                    ],
+                    "certificates": [
+                        {
+                            "certificateFile": "cert.pem",
+                            "keyFile": "key.pem",
+                            "usage": "encipherment"
+                        }
+                    ],
+                    "disableSystemRoot": true,
+                    "serverName": "HOST_NAME"
+                },
                 "wsSettings": {
                     "connectionReuse": true,
                     "headers": {
                         "Host": "HOST_NAME"
                     },
                     "path": "/path/foo"
-                },
-                "security": "tls",
-                "tlsSettings": {
-                    "serverName": "HOST_NAME",
-                    "allowInsecure": false,
-                    "alpn": ["http/1.1"],
-                    "certificates": [
-                        {
-                            "usage": "encipherment",
-                            "certificateFile": "cert.pem",
-                            "keyFile": "key.pem"
-                        }
-                    ],
-                    "disableSystemRoot": true
                 }
-            }
+            },
+            "tag": "example-tag-vmess-inbound"
         },
         {
             "listen": "127.0.0.1",
@@ -61,6 +66,11 @@
             "tag": "api"
         }
     ],
+    "log": {
+        "access": "/var/log/v2ray/access.log",
+        "error": "/var/log/v2ray/error.log",
+        "loglevel": "info"
+    },
     "outbounds": [
         {
             "protocol": "freedom",
@@ -72,27 +82,6 @@
             "tag": "blocked"
         }
     ],
-    "routing": {
-        "settings": {
-            "rules": [
-                {
-                    "type": "field",
-                    "inboundTag": [
-                        "api"
-                    ],
-                    "outboundTag": "api"
-                },
-                {
-                    "type": "field",
-                    "ip": [
-                        "geoip:private"
-                    ],
-                    "outboundTag": "blocked"
-                }
-            ]
-        },
-        "strategy": "rules"
-    },
     "policy": {
         "levels": {
             "0": {
@@ -100,12 +89,12 @@
                 "statsUserUplink": true
             },
             "50": {
-                "statsUserDownlink": true,
-                "statsUserUplink": true,
                 "connIdle": 300,
                 "downlinkOnly": 30,
-                "uplinkOnly": 15,
-                "handshake": 10
+                "handshake": 10,
+                "statsUserDownlink": true,
+                "statsUserUplink": true,
+                "uplinkOnly": 15
             }
         },
         "system": {
@@ -113,13 +102,26 @@
             "statsInboundUplink": true
         }
     },
-    "stats": {},
-    "api": {
-        "tag": "api",
-        "services": [
-            "HandlerService",
-            "LoggerService",
-            "StatsService"
-        ]
-    }
+    "routing": {
+        "settings": {
+            "rules": [
+                {
+                    "inboundTag": [
+                        "api"
+                    ],
+                    "outboundTag": "api",
+                    "type": "field"
+                },
+                {
+                    "ip": [
+                        "geoip:private"
+                    ],
+                    "outboundTag": "blocked",
+                    "type": "field"
+                }
+            ]
+        },
+        "strategy": "rules"
+    },
+    "stats": {}
 }

@@ -1,140 +1,140 @@
 {
-  "log": {
-    "access": "",
-    "error": "",
-    "loglevel": "warning"
-  },
-  "inbounds": [
-    {
-      "tag": "example-tag-socks-inbound",
-      "port": 10808,
-      "listen": "127.0.0.1",
-      "protocol": "socks",
-      "sniffing": {
-        "enabled": true,
-        "destOverride": [
-          "http",
-          "tls"
-        ]
-      },
-      "settings": {
-        "auth": "password",
-        "accounts": [
-          {
-            "user": "foo",
-            "pass": "1234"
-          }
-        ],
-        "udp": true,
-        "ip": null,
-        "clients": null
-      },
-      "streamSettings": null
-    },
-    {
-      "tag": "example-tag-http-inbound",
-      "port": 10809,
-      "listen": "127.0.0.1",
-      "protocol": "http",
-      "sniffing": {
-        "enabled": true,
-        "destOverride": [
-          "http",
-          "tls"
-        ]
-      },
-      "settings": {
-        "auth": "password",
-        "accounts": [
-          {
-            "user": "bar",
-            "pass": "1234"
-          }
-        ],
-        "udp": true,
-        "ip": null,
-        "clients": null
-      },
-      "streamSettings": null
-    }
-  ],
-  "outbounds": [
-    {
-      "tag": "example-tag-vmess-outbound",
-      "protocol": "vmess",
-      "settings": {
-        "vnext": [
-          {
-            "address": "OUT_ADDR",
-            "port": 10038,
-            "users": [
-              {
-                "id": "xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx",
-                "alterId": 64,
-                "email": "foo@mail",
-                "security": "chacha20-poly1305"
-              }
-            ]
-          }
-        ],
-        "servers": null,
-        "response": null
-      },
-      "streamSettings": {
-        "network": "kcp",
-        "security": "",
-        "tlsSettings": null,
-        "tcpSettings": null,
-        "kcpSettings": {
-          "mtu": 1350,
-          "tti": 50,
-          "uplinkCapacity": 12,
-          "downlinkCapacity": 100,
-          "congestion": false,
-          "readBufferSize": 2,
-          "writeBufferSize": 2,
-          "header": {
-            "type": "wechat-video",
-            "request": null,
-            "response": null
-          }
+    "dns": null,
+    "inbounds": [
+        {
+            "listen": "127.0.0.1",
+            "port": 10808,
+            "protocol": "socks",
+            "settings": {
+                "accounts": [
+                    {
+                        "pass": "1234",
+                        "user": "foo"
+                    }
+                ],
+                "auth": "password",
+                "clients": null,
+                "ip": null,
+                "udp": true
+            },
+            "sniffing": {
+                "destOverride": [
+                    "http",
+                    "tls"
+                ],
+                "enabled": true
+            },
+            "streamSettings": null,
+            "tag": "example-tag-socks-inbound"
         },
-        "wsSettings": null,
-        "httpSettings": null,
-        "quicSettings": null
-      },
-      "mux": {
-        "enabled": true
-      }
-    },
-    {
-      "tag": "direct",
-      "protocol": "freedom",
-      "settings": {
-        "vnext": null,
-        "servers": null,
-        "response": null
-      },
-      "streamSettings": null,
-      "mux": null
-    },
-    {
-      "tag": "block",
-      "protocol": "blackhole",
-      "settings": {
-        "vnext": null,
-        "servers": null,
-        "response": {
-          "type": "http"
+        {
+            "listen": "127.0.0.1",
+            "port": 10809,
+            "protocol": "http",
+            "settings": {
+                "accounts": [
+                    {
+                        "pass": "1234",
+                        "user": "bar"
+                    }
+                ],
+                "auth": "password",
+                "clients": null,
+                "ip": null,
+                "udp": true
+            },
+            "sniffing": {
+                "destOverride": [
+                    "http",
+                    "tls"
+                ],
+                "enabled": true
+            },
+            "streamSettings": null,
+            "tag": "example-tag-http-inbound"
         }
-      },
-      "streamSettings": null,
-      "mux": null
+    ],
+    "log": {
+        "access": "",
+        "error": "",
+        "loglevel": "warning"
+    },
+    "outbounds": [
+        {
+            "mux": {
+                "enabled": true
+            },
+            "protocol": "vmess",
+            "settings": {
+                "response": null,
+                "servers": null,
+                "vnext": [
+                    {
+                        "address": "OUT_ADDR",
+                        "port": 10086,
+                        "users": [
+                            {
+                                "alterId": 64,
+                                "email": "foo@mail",
+                                "id": "xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx",
+                                "security": "chacha20-poly1305"
+                            }
+                        ]
+                    }
+                ]
+            },
+            "streamSettings": {
+                "httpSettings": null,
+                "kcpSettings": {
+                    "congestion": false,
+                    "downlinkCapacity": 100,
+                    "header": {
+                        "request": null,
+                        "response": null,
+                        "type": "wechat-video"
+                    },
+                    "mtu": 1350,
+                    "readBufferSize": 2,
+                    "tti": 50,
+                    "uplinkCapacity": 12,
+                    "writeBufferSize": 2
+                },
+                "network": "kcp",
+                "quicSettings": null,
+                "security": "",
+                "tcpSettings": null,
+                "tlsSettings": null,
+                "wsSettings": null
+            },
+            "tag": "example-tag-vmess-outbound"
+        },
+        {
+            "mux": null,
+            "protocol": "freedom",
+            "settings": {
+                "response": null,
+                "servers": null,
+                "vnext": null
+            },
+            "streamSettings": null,
+            "tag": "direct"
+        },
+        {
+            "mux": null,
+            "protocol": "blackhole",
+            "settings": {
+                "response": {
+                    "type": "http"
+                },
+                "servers": null,
+                "vnext": null
+            },
+            "streamSettings": null,
+            "tag": "block"
+        }
+    ],
+    "routing": {
+        "domainStrategy": "IPIfNonMatch",
+        "rules": []
     }
-  ],
-  "dns": null,
-  "routing": {
-    "domainStrategy": "IPIfNonMatch",
-    "rules": []
-  }
 }

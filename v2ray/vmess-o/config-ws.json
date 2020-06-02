@@ -1,144 +1,146 @@
 {
-  "log": {
-    "access": "",
-    "error": "",
-    "loglevel": "warning"
-  },
-  "inbounds": [
-    {
-      "tag": "example-tag-socks-inbound",
-      "port": 10808,
-      "listen": "127.0.0.1",
-      "protocol": "socks",
-      "sniffing": {
-        "enabled": true,
-        "destOverride": [
-          "http",
-          "tls"
-        ]
-      },
-      "settings": {
-        "auth": "password",
-        "accounts": [
-          {
-            "user": "foo",
-            "pass": "1234"
-          }
-        ],
-        "udp": true,
-        "ip": null,
-        "clients": null
-      },
-      "streamSettings": null
-    },
-    {
-      "tag": "example-tag-http-inbound",
-      "port": 10809,
-      "listen": "127.0.0.1",
-      "protocol": "http",
-      "sniffing": {
-        "enabled": true,
-        "destOverride": [
-          "http",
-          "tls"
-        ]
-      },
-      "settings": {
-        "auth": "password",
-        "accounts": [
-          {
-            "user": "bar",
-            "pass": "1234"
-          }
-        ],
-        "udp": true,
-        "ip": null,
-        "clients": null
-      },
-      "streamSettings": null
-    }
-  ],
-  "outbounds": [
-    {
-      "tag": "example-tag-vmess-outbound",
-      "protocol": "vmess",
-      "settings": {
-        "vnext": [
-          {
-            "address": "OUT_ADDR",
-            "port": 443,
-            "users": [
-              {
-                "id": "xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx",
-                "alterId": 64,
-                "email": "foo@mail",
-                "security": "chacha20-poly1305"
-              }
-            ]
-          }
-        ],
-        "servers": null,
-        "response": null
-      },
-      "streamSettings": {
-        "network": "ws",
-        "security": "tls",
-        "tlsSettings": {
-          "serverName": "HOST_NAME",
-          "allowInsecure": false,
-          "alpn": ["http/1.1"],
-          "certificates": [
-            {
-              "usage": "verify",
-              "certificateFile": "cert.pem"
-            }
-          ],
-          "disableSystemRoot": true
+    "dns": null,
+    "inbounds": [
+        {
+            "listen": "127.0.0.1",
+            "port": 10808,
+            "protocol": "socks",
+            "settings": {
+                "accounts": [
+                    {
+                        "pass": "1234",
+                        "user": "foo"
+                    }
+                ],
+                "auth": "password",
+                "clients": null,
+                "ip": null,
+                "udp": true
+            },
+            "sniffing": {
+                "destOverride": [
+                    "http",
+                    "tls"
+                ],
+                "enabled": true
+            },
+            "streamSettings": null,
+            "tag": "example-tag-socks-inbound"
         },
-        "tcpSettings": null,
-        "kcpSettings": null,
-        "wsSettings": {
-          "connectionReuse": true,
-          "path": "/path/foo",
-          "headers": {
-            "Host": "HOST_NAME"
-          }
-        },
-        "httpSettings": null,
-        "quicSettings": null
-      },
-      "mux": {
-        "enabled": true
-      }
-    },
-    {
-      "tag": "direct",
-      "protocol": "freedom",
-      "settings": {
-        "vnext": null,
-        "servers": null,
-        "response": null
-      },
-      "streamSettings": null,
-      "mux": null
-    },
-    {
-      "tag": "block",
-      "protocol": "blackhole",
-      "settings": {
-        "vnext": null,
-        "servers": null,
-        "response": {
-          "type": "http"
+        {
+            "listen": "127.0.0.1",
+            "port": 10809,
+            "protocol": "http",
+            "settings": {
+                "accounts": [
+                    {
+                        "pass": "1234",
+                        "user": "bar"
+                    }
+                ],
+                "auth": "password",
+                "clients": null,
+                "ip": null,
+                "udp": true
+            },
+            "sniffing": {
+                "destOverride": [
+                    "http",
+                    "tls"
+                ],
+                "enabled": true
+            },
+            "streamSettings": null,
+            "tag": "example-tag-http-inbound"
         }
-      },
-      "streamSettings": null,
-      "mux": null
+    ],
+    "log": {
+        "access": "",
+        "error": "",
+        "loglevel": "warning"
+    },
+    "outbounds": [
+        {
+            "mux": {
+                "enabled": true
+            },
+            "protocol": "vmess",
+            "settings": {
+                "response": null,
+                "servers": null,
+                "vnext": [
+                    {
+                        "address": "OUT_ADDR",
+                        "port": 10086,
+                        "users": [
+                            {
+                                "alterId": 64,
+                                "email": "foo@mail",
+                                "id": "xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx",
+                                "security": "chacha20-poly1305"
+                            }
+                        ]
+                    }
+                ]
+            },
+            "streamSettings": {
+                "httpSettings": null,
+                "kcpSettings": null,
+                "network": "ws",
+                "quicSettings": null,
+                "security": "tls",
+                "tcpSettings": null,
+                "tlsSettings": {
+                    "allowInsecure": false,
+                    "alpn": [
+                        "http/1.1"
+                    ],
+                    "certificates": [
+                        {
+                            "certificateFile": "cert.pem",
+                            "usage": "verify"
+                        }
+                    ],
+                    "disableSystemRoot": true,
+                    "serverName": "HOST_NAME"
+                },
+                "wsSettings": {
+                    "connectionReuse": true,
+                    "headers": {
+                        "Host": "HOST_NAME"
+                    },
+                    "path": "/path/foo"
+                }
+            },
+            "tag": "example-tag-vmess-outbound"
+        },
+        {
+            "mux": null,
+            "protocol": "freedom",
+            "settings": {
+                "response": null,
+                "servers": null,
+                "vnext": null
+            },
+            "streamSettings": null,
+            "tag": "direct"
+        },
+        {
+            "mux": null,
+            "protocol": "blackhole",
+            "settings": {
+                "response": {
+                    "type": "http"
+                },
+                "servers": null,
+                "vnext": null
+            },
+            "streamSettings": null,
+            "tag": "block"
+        }
+    ],
+    "routing": {
+        "domainStrategy": "IPIfNonMatch",
+        "rules": []
     }
-  ],
-  "dns": null,
-  "routing": {
-    "domainStrategy": "IPIfNonMatch",
-    "rules": []
-  }
 }
