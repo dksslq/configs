@@ -44,7 +44,7 @@
                         {
                             "usage": "encipherment",
                             "certificateFile": "cert.pem",
-                            "keyFile": "privkey.pem"
+                            "keyFile": "key.pem"
                         }
                     ],
                     "disableSystemRoot": true
