@@ -8,7 +8,7 @@
     "outbounds": [
         {
             "mux": {
-                "enabled": true
+                "enabled": false
             },
             "protocol": "vmess",
             "settings": {
