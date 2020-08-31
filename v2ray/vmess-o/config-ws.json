@@ -102,7 +102,7 @@
                         }
                     ],
                     "disableSystemRoot": true,
-                    "serverName": "HOST_NAME"
+                    "serverName": "CERT_CN"
                 },
                 "wsSettings": {
                     "connectionReuse": true,
