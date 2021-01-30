@@ -1,5 +1,4 @@
 {
-    "dns": null,
     "inbounds": [
         {
             "listen": "127.0.0.1",
@@ -13,8 +12,6 @@
                     }
                 ],
                 "auth": "password",
-                "clients": null,
-                "ip": null,
                 "udp": true
             },
             "sniffing": {
@@ -24,7 +21,6 @@
                 ],
                 "enabled": true
             },
-            "streamSettings": null,
             "tag": "example-tag-socks-inbound"
         },
         {
@@ -39,8 +35,6 @@
                     }
                 ],
                 "auth": "password",
-                "clients": null,
-                "ip": null,
                 "udp": true
             },
             "sniffing": {
@@ -50,24 +44,18 @@
                 ],
                 "enabled": true
             },
-            "streamSettings": null,
             "tag": "example-tag-http-inbound"
         }
     ],
     "log": {
         "access": "",
         "error": "",
-        "loglevel": "warning"
+        "loglevel": "info"
     },
     "outbounds": [
         {
-            "mux": {
-                "enabled": false
-            },
             "protocol": "vmess",
             "settings": {
-                "response": null,
-                "servers": null,
                 "vnext": [
                     {
                         "address": "OUT_ADDR",
@@ -84,12 +72,8 @@
                 ]
             },
             "streamSettings": {
-                "httpSettings": null,
-                "kcpSettings": null,
                 "network": "ws",
-                "quicSettings": null,
                 "security": "tls",
-                "tcpSettings": null,
                 "tlsSettings": {
                     "allowInsecure": false,
                     "alpn": [
@@ -115,27 +99,16 @@
             "tag": "example-tag-vmess-outbound"
         },
         {
-            "mux": null,
             "protocol": "freedom",
-            "settings": {
-                "response": null,
-                "servers": null,
-                "vnext": null
-            },
-            "streamSettings": null,
             "tag": "direct"
         },
         {
-            "mux": null,
             "protocol": "blackhole",
             "settings": {
                 "response": {
                     "type": "http"
-                },
-                "servers": null,
-                "vnext": null
+                }
             },
-            "streamSettings": null,
             "tag": "block"
         }
     ],
