@@ -15,13 +15,13 @@
             "settings": {
                 "clients": [
                     {
-                        "alterId": 64,
+                        "alterId": 0,
                         "email": "foo@mail",
                         "id": "xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx",
                         "level": 0
                     },
                     {
-                        "alterId": 64,
+                        "alterId": 0,
                         "email": "bar@mail",
                         "id": "xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx",
                         "level": 50

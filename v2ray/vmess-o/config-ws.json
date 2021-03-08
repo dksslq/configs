@@ -62,7 +62,7 @@
                         "port": 10086,
                         "users": [
                             {
-                                "alterId": 64,
+                                "alterId": 0,
                                 "email": "foo@mail",
                                 "id": "xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx",
                                 "security": "chacha20-poly1305"
